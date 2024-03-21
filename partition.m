@@ -16,8 +16,6 @@ end
 
 [_, order] = sort(p);
 
-v
-
 opt_cut = 1000;
 opt_index = 0;
 
@@ -28,7 +26,7 @@ B_assoc = sum(sum(W));
 
 cut = 0;
 
-order;
+order
 
 for i = 1:n-1
     cur = order(i);
@@ -45,4 +43,4 @@ end
 
 opt_index
 opt_cut
-best_part = order(1:opt_index);
+best_part = sort(order(1:opt_index));
