@@ -26,7 +26,7 @@ B_assoc = sum(sum(W));
 
 cut = 0;
 
-order
+order;
 
 for i = 1:n-1
     cur = order(i);
