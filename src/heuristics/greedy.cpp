@@ -9,14 +9,14 @@ using std::vector;
 int main(int argc, char** argv){
 
     if(argc < 2){
-        std::cerr << "Usage:  greedy adj_matrix.m" << std::endl;
-        std::cerr << "\t Where  adj_matrix.m is a matlab-style matrix" << std::endl;
+        std::cerr << "Usage:  greedy testname" << std::endl;
+        std::cerr << "Where testname.mat is a matlab-style matrix" << std::endl;
         return 0;
     }
 
     std::string filename(argv[1]);
-    auto matrix = read_matrix(filename);
-    std::cerr << "Read matrix of size " << matrix.size() << " from " << filename << std::endl;
+    auto matrix = read_matrix(filename + ".mat");
+    std::cerr << "GREEDY: \tRead matrix of size " << matrix.size() << " from " << filename << std::endl;
 
     size_t n = matrix.size();
     vector<bool> partition(n,0);
@@ -35,7 +35,6 @@ int main(int argc, char** argv){
         partition[best_index] = 1;
         for(size_t i = 0; i < n; ++i)if(!partition[i])weights[i] += matrix[best_index][i];
         minCut = std::min(minCut, normalizedCut(matrix, partition));
-        std::cerr << minCut << std::endl;
     }
 
     std::cout << minCut << std::endl;
