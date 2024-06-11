@@ -1,5 +1,7 @@
 #! /bin/sh
 
+#TODO: everything in here is outdated
+
 cd data/facebook
 
 wget https://snap.stanford.edu/data/facebook_combined.txt.gz
