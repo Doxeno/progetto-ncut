@@ -1,4 +1,5 @@
-data/*/*
 octave-workspace
-!*.sh
-!*.py
+benchmarks/*
+!*.cpp
+src/heuristics/*
+!src/heuristics/Makefile
