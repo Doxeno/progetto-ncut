@@ -1,17 +1,18 @@
 #! /bin/bash
 usage="Usage: ./benchmark.sh testname.
-The script will use the matrix in testname.mat
+The script will use the matrix in benchmarks/testname.mat
 Note: run this script in the repo's root"
 
-filename=$1".mat"
+testname="benchmarks/"$1
 cluster_file=$1"._cluster.txt"
 
-if [[ -d $filename && -z $2 ]]; then
-# TODO: actual script
+if [[ -e $testname".mat" && -z $2 ]]; then
+    src/heuristics/greedy $testname
+    src/heuristics/bruteforce $testname
 elif [ -z $1 ]; then
     echo -e "$usage"
 elif [ -z $2 ]; then
-    echo $filename does not exist.
+    echo $testname".mat" does not exist.
 else
     echo -e "$usage"
 fi
