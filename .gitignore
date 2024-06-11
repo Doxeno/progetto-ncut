@@ -1,0 +1,4 @@
+data/*/*
+octave-workspace
+!*.sh
+!*.py
