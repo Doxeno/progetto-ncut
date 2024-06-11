@@ -45,17 +45,18 @@ if __name__ == "__main__":
 
     for i in cluster:
         for j in cluster:
-            mat[i][j] += uniform(0, hi)
+            if i <= j:
+                mat[i][j] += uniform(0, hi)
     for i in compl:
         for j in compl:
-            mat[i][j] += uniform(0, low)
+            if i <= j:
+                mat[i][j] += uniform(0, low)
 
     for i in range(N):
         mat[i][i] = 0
 
     for i in range(N):
         for j in range(i):
-            mat[i][j] += mat[j][i]
             mat[j][i] = mat[i][j]
 
 
