@@ -5,7 +5,7 @@ from random import randint, sample, uniform, seed
 
 usage = """Parameters:
 * N: number of nodes
-* Name: this script will produce Name.mat and Name_cluster.txt
+* Name: this script will produce Name.mat, Name_cluster.txt and Name_adhoc_res.txt
 * s (optional, default 0): rng seed
 * low (optional, default 0.05): edges between nodes in different cliques will have a random weight in [0, low]
 * hi (optional, defualt 0.1): edges between nodes in the same clique will have a random weight in [0, hi]
@@ -45,23 +45,43 @@ if __name__ == "__main__":
 
     for i in cluster:
         for j in cluster:
-            if i <= j:
-                mat[i][j] += uniform(0, hi)
+            mat[i][j] += uniform(0, hi)
+
     for i in compl:
         for j in compl:
-            if i <= j:
-                mat[i][j] += uniform(0, low)
+            mat[i][j] += uniform(0, hi)
 
-    for i in range(N):
-        mat[i][i] = 0
+    for i in cluster:
+        for j in compl:
+            mat[j][i] += uniform(0, low)
+            mat[i][j] += uniform(0, low)
 
     for i in range(N):
         for j in range(i):
             mat[j][i] = mat[i][j]
 
+    cut = 0
+    assocA = 0
+    assocB = 0
+    for i in cluster:
+        for j in range(N):
+            assocA += mat[i][j]
+    for i in compl:
+        for j in range(N):
+            assocB += mat[i][j]
+    for i in cluster:
+        for j in compl:
+            cut += mat[i][j]
+
+    nCut = cut/assocA + cut/assocB
+
+    result_file = open(filename + "_adhoc_res.txt", "w")
+    print('{0:04f}'.format(nCut), file = result_file)
+
 
     cluster_file = open(filename + "_cluster.txt", "w")
-    print(*sorted(list(map(lambda x: x+1, cluster))), file = cluster_file)
+    cluster = sorted(cluster)
+    print(','.join(list(map(lambda x: str(x+1), cluster))), file = cluster_file)
 
     matrix_file = open(filename + ".mat", "w")
     for row in mat:
