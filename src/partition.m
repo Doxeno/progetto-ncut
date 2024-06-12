@@ -42,5 +42,14 @@ for i = 1:n-1
     end
 end
 
-
-best_part = sort(order(1:opt_index));
+b = 1;
+for i = 1:opt_index
+    if (order(i) == 1)
+        b = 0;
+    end
+end
+if b == 0
+    best_part = sort(order(1:opt_index));
+else
+    best_part = sort(order(opt_index+1:n));
+end
