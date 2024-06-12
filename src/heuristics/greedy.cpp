@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <cstddef>
 #include <iostream>
+#include <numeric>
 #include <vector>
 
 using std::vector;
@@ -21,20 +22,36 @@ int main(int argc, char** argv){
     size_t n = matrix.size();
     vector<bool> partition(n,0);
     partition[0] = 1;
-    double minCut = 2;
     vector<double> weights = matrix[0];
+    double assocA = std::accumulate(weights.begin(), weights.end(), double(0));
+    double cut = assocA - matrix[0][0];
+    double assocB = 0;
+    for(size_t i = 1; i < n; ++i)assocB +=
+         std::accumulate(matrix[i].begin(), matrix[i].end(), double(0));
+    double nCut = cut/assocA + cut/assocB;
+    double minCut = nCut;
 
 // A is initially set to {0}
 // at each step, the node which minimises the sum of the weights
 // of the edges that connect it to A is added to it.
-//TODO: improve to O(n^2)
 
-    for(size_t _ = 0; _ < n; ++_){
+    for(size_t _ = 2; _ < n; ++_){
         size_t best_index = std::max_element(weights.begin(), weights.end()) - weights.begin();
         weights[best_index] = 0;
+        for(size_t i = 0; i < n; ++i){
+            assocB -= matrix[best_index][i];
+            assocA += matrix[best_index][i];
+            if(!partition[i]){
+                weights[i] += matrix[best_index][i];
+                cut += matrix[best_index][i];
+            }else{
+                cut -= matrix[best_index][i];
+            }
+        }
+        cut -= matrix[best_index][best_index];
+        nCut = cut/assocA + cut/assocB;
         partition[best_index] = 1;
-        for(size_t i = 0; i < n; ++i)if(!partition[i])weights[i] += matrix[best_index][i];
-        minCut = std::min(minCut, normalizedCut(matrix, partition));
+        minCut = std::min(nCut, minCut);
     }
 
     std::cout << minCut << std::endl;
