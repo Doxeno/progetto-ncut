@@ -21,8 +21,8 @@ rm facebook_combined.txt
 # medium noise
 ../data/adhoc.py 200 med_noise_200 0 1 2 2
 ../data/adhoc.py 300 med_noise_300 0 1 2 2
-../data/adhoc.py 400 med_noise_400 0 1 2 2
-../data/adhoc.py 500 med_noise_500 0 1 2 2
+../data/adhoc.py 400 med_noise_400 0 2 3 2
+../data/adhoc.py 500 med_noise_500 0 2 3 2
 
 
 # small random matrices
@@ -33,6 +33,9 @@ rm facebook_combined.txt
 ../data/random_matrix.py random_16 16
 ../data/random_matrix.py random_18 18
 ../data/random_matrix.py random_20 20
+../data/random_matrix.py random_200 200
+../data/random_matrix.py random_300 300
+../data/random_matrix.py random_400 400
 
 cd ..
 
