@@ -44,11 +44,12 @@ int main(int argc, char** argv){
         // matlab indices are wrong
     }
     for(size_t i = 1; i < best_p.size(); ++i){
-        part_file << best_p[i-1] << ", ";
+        part_file << best_p[i-1] << ',';
     }
     if(!best_p.empty())part_file << best_p.back();
     part_file << std::endl;
     part_file.close();
+
 
     std::cout << minCut << std::endl;
 }

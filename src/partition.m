@@ -1,10 +1,10 @@
-function best_part = partition(W)
+function [opt_cut, best_part] = partition(W)
 
 n = size(W,1);
 
 D = diag(sum(W));
 
-[V, v] = eigs(D-W, D, 2, "sm")
+[V, v] = eigs(D-W, D, 2, "sm");
 
 p = 0;
 
@@ -33,14 +33,14 @@ for i = 1:n-1
     A_assoc += D(cur, cur);
     B_assoc -= D(cur, cur);
     cut += D(cur, cur) - 2*part*W(:, cur);
+    cut -= W(cur, cur);
     part(cur) = 1;
-    Ncut = cut/A_assoc + cut/B_assoc
+    Ncut = cut/A_assoc + cut/B_assoc;
     if (Ncut < opt_cut)
         opt_cut = Ncut;
         opt_index = i;
     end
 end
 
-opt_index
-opt_cut
+
 best_part = sort(order(1:opt_index));

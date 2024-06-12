@@ -30,10 +30,13 @@ double normalizedCut (const vector<vector<double>> &matrix, const vector<bool> &
     double cut = 0;
     double assocA = 0;
     double assocB = 0;
-    for(size_t i = 0; i < n; ++i)for(size_t j = 0; j < i; ++j){
-        if(partition[i] ^ partition[j])cut += matrix[i][j];
-        if(partition[i] | partition[j])assocA += matrix[i][j];
-        if(!(partition[i] & partition[j]))assocB += matrix[i][j];
+    for(size_t i = 0; i < n; ++i)for(size_t j = 0; j < n; ++j){
+        if(partition[i]){
+            assocA += matrix[i][j];
+            if(!partition[j])cut += matrix[i][j];
+        }
+        if(!partition[i])assocB += matrix[i][j];
     }
+    if(assocA == 0 || assocB == 0)return 2;
     return cut/assocA + cut/assocB;
 }
