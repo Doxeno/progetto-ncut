@@ -7,6 +7,7 @@ gzip -d facebook_combined.txt.gz
 rm facebook_combined.txt
 
 # default settings
+# low = 0.05, hi = 0.1, noise = 0.1
 ../data/adhoc.py 200 adhoc_200
 ../data/adhoc.py 300 adhoc_300
 ../data/adhoc.py 400 adhoc_400
@@ -30,9 +31,13 @@ rm facebook_combined.txt
 ../data/random_matrix.py random_11 11
 ../data/random_matrix.py random_12 12
 ../data/random_matrix.py random_14 14
+../data/random_matrix.py random_15 15
 ../data/random_matrix.py random_16 16
+../data/random_matrix.py random_17 17
 ../data/random_matrix.py random_18 18
+../data/random_matrix.py random_19 19
 ../data/random_matrix.py random_20 20
+
 ../data/random_matrix.py random_200 200
 ../data/random_matrix.py random_300 300
 ../data/random_matrix.py random_400 400
