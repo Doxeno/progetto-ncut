@@ -1,6 +1,8 @@
 #include "utils.hpp"
 #include <cstddef>
 #include <fstream>
+#include <iomanip>
+#include <ios>
 #include <iostream>
 #include <vector>
 
@@ -51,5 +53,6 @@ int main(int argc, char** argv){
     part_file.close();
 
 
+    std::cout << std::fixed << std::setprecision(3);
     std::cout << minCut << std::endl;
 }

@@ -9,5 +9,5 @@ output_file = [args{1} "_res.mat"];
 graph = dlmread(matrix_file);
 
 [cut, part] = partition(graph);
-cut
+fprintf('NCut:\n%1.3f\n',cut)
 dlmwrite(output_file, part');
