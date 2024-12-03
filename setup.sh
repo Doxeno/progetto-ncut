@@ -67,3 +67,7 @@ fi
 cd ..
 
 make -C src/heuristics
+pdflatex relazione.tex
+rm relazione.out
+rm relazione.log
+rm relazione.aux
