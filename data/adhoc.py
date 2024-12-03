@@ -9,7 +9,7 @@ usage = """Parameters:
 * s (optional, default 0): rng seed
 * low (optional, default 0.05): edges between nodes in different cliques will have a random weight in [0, low]
 * hi (optional, defualt 0.1): edges between nodes in the same clique will have a random weight in [0, hi]
-* noise (optionale, default 0.1): every edge's weight will be increased by a random value in [0, noise]"""
+* noise (optional, default 0.1): every edge's weight will be increased by a random value in [0, noise]"""
 
 if __name__ == "__main__":
     if len(argv) < 3:
@@ -76,7 +76,7 @@ if __name__ == "__main__":
     nCut = cut/assocA + cut/assocB
 
     result_file = open(filename + "_adhoc_res.txt", "w")
-    print('{0:04f}'.format(nCut), file = result_file)
+    print("{:.3f}".format(nCut), file = result_file)
 
 
     cluster_file = open(filename + "_cluster.txt", "w")
