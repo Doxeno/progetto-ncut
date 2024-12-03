@@ -1,10 +1,19 @@
 #! /bin/sh
 
 cd benchmarks
+if [ ! -f facebook.mat ]; then
 wget https://snap.stanford.edu/data/facebook_combined.txt.gz
 gzip -d facebook_combined.txt.gz
 ../data/create_matrix.py facebook_combined.txt 4039 > facebook.mat
 rm facebook_combined.txt
+fi
+
+if [ ! -f email.mat ]; then
+wget https://snap.stanford.edu/data/email-Eu-core-temporal.txt.gz
+gzip -d email-Eu-core-temporal.txt.gz
+../data/email_graph.py email-Eu-core-temporal.txt 1005 > email.mat
+rm email-Eu-core-temporal.txt
+fi
 
 # default settings
 # low = 0.05, hi = 0.1, noise = 0.1
@@ -41,6 +50,19 @@ rm facebook_combined.txt
 ../data/random_matrix.py random_200 200
 ../data/random_matrix.py random_300 300
 ../data/random_matrix.py random_400 400
+../data/random_matrix.py random_500 500
+../data/random_matrix.py random_600 600
+../data/random_matrix.py random_700 700
+../data/random_graph.py graph_1 200 1000
+../data/random_graph.py graph_2 300 1000
+../data/random_graph.py graph_3 400 9000
+../data/random_graph.py graph_4 500 5000
+../data/random_graph.py graph_5 500 8000
+../data/random_graph.py graph_6 500 9000
+../data/random_graph.py graph_7 500 10000
+../data/random_graph.py graph_8 500 20000
+../data/random_graph.py graph_9 500 30000
+../data/random_graph.py graph_10 500 50000
 
 cd ..
 
