@@ -12,7 +12,6 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\usepackage{multicol}
 \usepackage{mathtools}
 \usepackage{enumitem}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
@@ -24,7 +23,6 @@
 
 \begin{document}
 \maketitle
-\begin{multicols}{2}
 
 %\begin{abstract}
 %Your abstract.
@@ -47,7 +45,7 @@ Il taglio normalizzato \`e definito come segue:
 
 Questo differisce dalla classica definizione di taglio, ossia $assoc(A,B)$, poich\`e penalizza, ad esempio,
 le partizioni dove $A$ \`e un nodo isolato.
-A differenza del taglio non normalizzato, per\`o, trovare una partizione che minimizza \textit{Ncut} \`e un problema NP-completo.
+A differenza del taglio non normalizzato, per\`o, trovare una partizione che minimizza \textit{Ncut} \`e un problema NP.
 Tuttavia, esistono metodi per approssimarla e nella seguente relazione verr\`a analizzato uno di questi, confrontandolo con alcune strategie euristiche.
 
 \subsection{Notazione}
@@ -59,7 +57,6 @@ $\D$ \`e una matrice diagonale che ha $d$ sulla diagonale.
 
 \section{Il metodo}
 Il metodo analizzato per l'approssimazione del taglio normalizzato, proposto da Jianbo Shi e Jitendra Malik nel 2000, risolve un rilassamento continuo.\\
-Sia $\D$ la matrice diagonale tale che $\D_{i,i} = \sum_j \W_{i,j}$.\\
 Gli autori mostrano che, minimizzare il taglio normalizzato equivale a risolvere:
 $$ min_y\frac{y^\top (\D-\W)y}{y ^\top \D y}$$.
 
@@ -67,8 +64,8 @@ Dove $y^\top \D 1 = 0$ e $y_i\in\{1, -b\}$ per un certo paramentro reale $b$, da
 La soluzione senza considerare queste condizioni pu\`o essere trovata risolvendo il sistema generalizzato
 $$ (\D - \W)y = \lambda \D y $$.
 
-Dopo ulteriori osservazioni, si ha che il rilassamento reale dell'espressione sopra \`e minimizzata dal secondo autovettore pi\`u piccolo $y_1$ e, inoltre, $y_1^\top \D 1 = 0$. \\
-Per tornare in ambito discreto, viene ordinato $[1, \ldots, n]$ per valore crescente di $y_{1_i}$ e, successivamente calcolati i tagli minimi dati dalle partizioni in prefissi e suffissi di questo ordinamento.
+Dopo ulteriori osservazioni, si ha che il rilassamento reale dell'espressione sopra \`e minimizzata dal secondo autovettore pi\`u piccolo $\bar{y}$ e, inoltre, $\bar{y}^\top \D 1 = 0$. \\
+Per tornare in ambito discreto, viene ordinato $[1, \ldots, n]$ per valore crescente di $\bar{y}_i$ e, successivamente calcolati i tagli minimi dati dalle partizioni in prefissi e suffissi di questo ordinamento.
 
 \section{Implementazione}
 
@@ -204,6 +201,8 @@ nodi della stessa componente sono stati aumentati di un valore randomico compres
     \end{tabular}
 \end{center}
 
+\pagebreak
+
 \subsection{Grafi random}
 
 In questa sezione sono considerate due tipologie di grafo: densi e sparsi,
@@ -268,8 +267,7 @@ uno considera le e-mail scambiate fra i ricercatori di un'Istituzione Europea, l
 \section{Risultati e analisi computazionale}
 Il metodo dell'autovettore ha mostrato risultati molto soddisfacenti. Escludendo pochi casi nei grafi piccoli, ha sempre prodotto tagli migliori dei metodi con cui \`e stato confrontato.\\
 Tuttavia, la complessit\`a computazionale \`e il prezzo da pagare per i risultati. Il bottleneck risiede nel calcolare l'autovettore relativo al secondo autovalore pi\`u piccolo.\\
-Mentre calcolare gli autovalori pi\`u grossi \`e relativamente semplice, ci\`o non \`e vero per quelli pi\`u piccoli. La complessit\`a necessaria per farlo \`e almeno $\mathcal{O(nm)}$. 
+Mentre calcolare gli autovalori pi\`u grossi \`e relativamente semplice, ci\`o non \`e vero per quelli pi\`u piccoli. La complessit\`a necessaria per farlo \`e almeno $\mathcal{O}(nm)$. 
 
 
-\end{multicols}
 \end{document}
