@@ -21,6 +21,7 @@ int main(int argc, char** argv) {
     std::cerr << "GREEDY: \tRead matrix of size " << matrix.size() << " from " << filename
               << std::endl;
 
+    timer timer;
     size_t n = matrix.size();
     vector<bool> partition(n, 0);
     partition[0] = 1;
@@ -55,6 +56,8 @@ int main(int argc, char** argv) {
         partition[best_index] = 1;
         minCut = std::min(nCut, minCut);
     }
+
+    timer.print_elapsed();
 
     std::cout << std::fixed << std::setprecision(3);
     std::cout << minCut << std::endl;

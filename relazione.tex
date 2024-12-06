@@ -262,12 +262,38 @@ uno considera le e-mail scambiate fra i ricercatori di un'Istituzione Europea, l
 \end{center}
 
 
-
-
 \section{Risultati e analisi computazionale}
 Il metodo dell'autovettore ha mostrato risultati molto soddisfacenti. Escludendo pochi casi nei grafi piccoli, ha sempre prodotto tagli migliori dei metodi con cui \`e stato confrontato.\\
 Tuttavia, la complessit\`a computazionale \`e il prezzo da pagare per i risultati. Il bottleneck risiede nel calcolare l'autovettore relativo al secondo autovalore pi\`u piccolo.\\
-Mentre calcolare gli autovalori pi\`u grossi \`e relativamente semplice, ci\`o non \`e vero per quelli pi\`u piccoli. La complessit\`a necessaria per farlo \`e almeno $\mathcal{O}(nm)$. 
+Mentre calcolare gli autovalori pi\`u grossi \`e relativamente semplice, ci\`o non \`e vero per quelli pi\`u piccoli. La complessit\`a necessaria per farlo \`e almeno $\mathcal{O}(nm)$.
+Nella tabella seguente sono riportati i tempi di esecuzione (in secondi) dei vari metodi, su grafi densi random.
 
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        n & Autovettore & Greedy & Random \\
+        \hline
+        \hline
+        1000 & 1.9158 & 0.0034 & 1.0782 \\
+        2000 & 12.2039 & 0.0129 & 4.3516 \\
+        3000 & 29.6770 & 0.0296 & 9.7834 \\
+        4000 & 81.1914 & 0.0513 & 17.1442 \\
+        5000 & 113.6006 & 0.0819 & 26.8064 \\
+        6000 & 204.6602 & 0.1241 & 38.4848 \\
+        7000 & 258.9942 & 0.1817 & 55.3734 \\
+        8000 & 382.5929 & 0.2507 & 73.9880 \\
+        9000 & 463.1287 & 0.3266 & 103.0638 \\
+        1000 & 734.7514 & 0.4146 & 128.3895 \\
+        \hline
+
+    \end{tabular}
+\end{center}
+
+Plottando i dati, con n sull'asse x e il tempo di esecuzione diviso per $n^2$ sull'asse y, si evince chiaramente che, mentre i metodi greedy e random hanno complessit\`a $\mathcal{O}(n^2)$, il metodo dell'autovettore ha un ulteriore fattore $n$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{complexity_plot.pdf}
+\end{figure}
 
 \end{document}

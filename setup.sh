@@ -53,6 +53,16 @@ fi
 ../data/random_matrix.py random_500 500
 ../data/random_matrix.py random_600 600
 ../data/random_matrix.py random_700 700
+../data/random_matrix.py random_1000 1000
+../data/random_matrix.py random_2000 2000
+../data/random_matrix.py random_3000 3000
+../data/random_matrix.py random_4000 4000
+../data/random_matrix.py random_5000 5000
+../data/random_matrix.py random_6000 6000
+../data/random_matrix.py random_7000 7000
+../data/random_matrix.py random_8000 8000
+../data/random_matrix.py random_9000 9000
+../data/random_matrix.py random_10000 10000
 ../data/random_graph.py graph_1 200 1000
 ../data/random_graph.py graph_2 300 1000
 ../data/random_graph.py graph_3 400 9000
@@ -67,6 +77,7 @@ fi
 cd ..
 
 make -C src/heuristics
+./complexity_plot.py
 pdflatex relazione.tex
 rm relazione.out
 rm relazione.log

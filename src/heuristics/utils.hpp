@@ -1,4 +1,8 @@
 #include <fstream>
+#include <chrono>
+#include <iomanip>
+#include <ios>
+#include <iostream>
 #include <cassert>
 #include <string>
 #include <vector>
@@ -40,3 +44,15 @@ double normalizedCut (const vector<vector<double>> &matrix, const vector<bool> &
     if(assocA == 0 || assocB == 0)return 2;
     return cut/assocA + cut/assocB;
 }
+
+using hrc = std::chrono::high_resolution_clock;
+using dur = std::chrono::duration<double>;
+struct timer{
+    hrc::time_point start_time = hrc::now();
+    void print_elapsed(){
+        auto now = hrc::now();
+        std::cout << "TIME\n";
+        std::cout << std::fixed << std::setprecision(4);
+        std::cout << dur(now - start_time).count() << " seconds\n";
+    }
+};
